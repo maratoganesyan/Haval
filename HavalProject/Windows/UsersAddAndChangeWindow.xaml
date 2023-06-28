@@ -1,0 +1,236 @@
+﻿<Window x:Class="HavalProject.Windows.UsersAddAndChangeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="False"
+        ui:ThemeManager.RequestedTheme="Light"
+        mc:Ignorable="d"
+        x:Name="EditUserWindow"
+        Height="620"
+        MinHeight="620"
+        Width="480"
+        Icon="/Images/Logo.png"
+        FontSize="20">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*" />
+            <RowDefinition />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="0.5*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <Image Source="/Images/Logo.png"
+                   Width="150" />
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="20, 0, 0, 0">
+                <Button x:Name="PhotoButton"
+                        Height="135"
+                        Background="Transparent"
+                        BorderBrush="Black"
+                        Padding="2"
+                        Click="PhotoButton_Click"
+                        Style="{StaticResource MaterialDesignPaperDarkButton}">
+                    <Button.Content>
+                        <Image x:Name="UserPhoto"
+                               Source="/Images/DefaultUserPhoto.jpg" />
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Center">
+
+                <TextBox x:Name="SurnameTextBox"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         BorderBrush="Black"
+                         Foreground="Black"
+                         FontSize="20"
+                         MaxLength="50"
+                         HorizontalAlignment="Left"
+                         Width="210"
+                         Background="Transparent">
+                    <materialDesign:HintAssist.Hint>
+                        <TextBlock Foreground="Black"
+                                   Text="Фамилия"
+                                   FontSize="20" />
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
+
+                <TextBox x:Name="NameTextBox"
+                         MaxLength="50"
+                         Margin="0, 10, 0, 0"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         BorderBrush="Black"
+                         Foreground="Black"
+                         FontSize="20"
+                         HorizontalAlignment="Left"
+                         Width="210"
+                         Background="Transparent">
+                    <materialDesign:HintAssist.Hint>
+                        <TextBlock Foreground="Black"
+                                   Text="Имя"
+                                   FontSize="20" />
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Vertical"
+                        Margin="20, 5, 0, 0">
+                <DatePicker x:Name="DateBithdayControl"
+                            Margin="0 15 0 0"
+                            Style="{StaticResource MaterialDesignDatePicker}"
+                            BorderBrush="Black"
+                            Foreground="Black"
+                            HorizontalAlignment="Left"
+                            Width="180"
+                            Background="Transparent">
+                    <materialDesign:HintAssist.Hint>
+                        <TextBlock Foreground="Black"
+                                   Text="Дата Рождения" />
+                    </materialDesign:HintAssist.Hint>
+                </DatePicker>
+                <TextBox x:Name="PhoneTextBox"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         BorderBrush="Black"
+                         Foreground="Black"
+                         FontSize="20"
+                         HorizontalAlignment="Left"
+                         Width="180"
+                         Background="Transparent">
+                    <materialDesign:HintAssist.Hint>
+                        <TextBlock Foreground="Black"
+                                   Text="Номер телефона"
+                                   FontSize="20" />
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
+                <TextBox x:Name="EmailTextBox"
+                         Margin="0, 10, 0, 0"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         BorderBrush="Black"
+                         Foreground="Black"
+                         FontSize="20"
+                         HorizontalAlignment="Left"
+                         Width="180"
+                         Background="Transparent">
+                    <materialDesign:HintAssist.Hint>
+                        <TextBlock Foreground="Black"
+                                   Text="Электронная почта"
+                                   FontSize="20" />
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
+
+                <TextBlock Text="Пол"
+                           Foreground="Gray"
+                           Margin="0, 15, 0, 0"
+                           FontSize="20" />
+
+                <ComboBox x:Name="GenderComboBox"
+                          BorderThickness="1"
+                          FontSize="20"
+                          HorizontalAlignment="Left"
+                          Width="180"
+                          Style="{StaticResource MaterialDesignComboBox}" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Orientation="Vertical"
+                        VerticalAlignment="Top">
+                <TextBox x:Name="LoginTextBox"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         BorderBrush="Black"
+                         Foreground="Black"
+                         MaxLength="40"
+                         FontSize="20"
+                         HorizontalAlignment="Left"
+                         Width="180"
+                         Background="Transparent">
+                    <materialDesign:HintAssist.Hint>
+                        <TextBlock Foreground="Black"
+                                   Text="Логин"
+                                   FontSize="20" />
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
+
+                <TextBox x:Name="PasswordTextBox"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         BorderBrush="Black"
+                         Foreground="Black"
+                         MaxLength="40"
+                         FontSize="20"
+                         Margin="0, 10, 0, 0"
+                         HorizontalAlignment="Left"
+                         Width="180"
+                         Background="Transparent">
+                    <materialDesign:HintAssist.Hint>
+                        <TextBlock Foreground="Black"
+                                   Text="Пароль"
+                                   FontSize="20" />
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
+
+                <TextBox x:Name="RepeatPasswordTextBox"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         BorderBrush="Black"
+                         Foreground="Black"
+                         MaxLength="40"
+                         FontSize="20"
+                         HorizontalAlignment="Left"
+                         Width="180"
+                         Background="Transparent">
+                    <materialDesign:HintAssist.Hint>
+                        <TextBlock Foreground="Black"
+                                   Text="Повторите пароль"
+                                   FontSize="20" />
+                    </materialDesign:HintAssist.Hint>
+                </TextBox>
+
+                <TextBlock Text="Должность"
+                           FontSize="20"
+                           Foreground="Gray"
+                           Margin="0, 20, 0, 0" />
+
+                <ComboBox x:Name="RoleComboBox"
+                          FontSize="20"
+                          BorderThickness="1"
+                          HorizontalAlignment="Left"
+                          Width="180"
+                          Style="{StaticResource MaterialDesignComboBox}" />
+            </StackPanel>
+        </Grid>
+
+
+        <StackPanel Grid.Row="3"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <Button x:Name="SaveButton"
+                    Background="Gray"
+                    FontSize="20"
+                    Height="35"
+                    Click="SaveButton_Click"
+                    Content="Сохранить"
+                    Style="{StaticResource MaterialDesignPaperDarkButton}" />
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,138 @@
+﻿<Window x:Class="HavalProject.Windows.DirectorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="False"
+        ui:ThemeManager.RequestedTheme="Light"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="Окно директора"
+        Height="650"
+        Width="1400"
+        Icon="/Images/Logo.png">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom">
+
+            <TextBlock x:Name="UserInformation"
+                       VerticalAlignment="Center"
+                       FontSize="20" />
+
+            <Image x:Name="UserImage" />
+
+            <Image Source="/Images/Logo.png" />
+        </StackPanel>
+
+
+        <Menu Height="40"
+              VerticalAlignment="Top">
+            <MenuItem Header="Пользователи"
+                      x:Name="Users"
+                      Click="Users_Click" />
+        </Menu>
+
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel  Orientation="Vertical"
+                         VerticalAlignment="Center"
+                         Margin="5 0 0 0">
+                <ui:AutoSuggestBox x:Name="SearchTextBox"
+                                   ui:ControlHelper.Header="Поиск"
+                                   ui:ControlHelper.PlaceholderText="Поиск"
+                                   IsEnabled="False"
+                                   QuerySubmitted="SearchTextBox_QuerySubmitted"
+                                   QueryIcon="Find"
+                                   Margin="0 0 0 0" />
+
+                <Button x:Name="UpdateMainGridButton"
+                        Margin="0, 40, 0, 0"
+                        MinHeight="60"
+                        Background="Gray"
+                        Click="UpdateMainGridButton_Click"
+                        Style="{StaticResource MaterialDesignPaperDarkButton}">
+                    <Button.Content>
+                        <TextBlock Text="Обновить/Сбросить поиск"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+
+                <Button x:Name="SalesReportButton"
+                        Margin="0, 40, 0, 0"
+                        Background="Gray"
+                        Click="SalesReportButton_Click"
+                        Style="{StaticResource MaterialDesignPaperDarkButton}"
+                        MinHeight="60">
+                    <Button.Content>
+                        <TextBlock TextWrapping="Wrap"
+                                   Text="Формирование отчёта по продажам"
+                                   TextAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+
+                <Button x:Name="SuppliesReportButton"
+                        Margin="0, 40, 0, 0"
+                        Background="Gray"
+                        Click="SuppliesReportButton_Click"
+                        Style="{StaticResource MaterialDesignPaperDarkButton}"
+                        MinHeight="60">
+                    <Button.Content>
+                        <TextBlock TextWrapping="Wrap"
+                                   Text="Формирование отчёта по поставкам"
+                                   TextAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+
+                <Button x:Name="StatisticModuleButton"
+                        Content="Модуль статистики"
+                        Margin="0, 40, 0, 0"
+                        Background="Gray"
+                        Click="StatisticModuleButton_Click"
+                        Style="{StaticResource MaterialDesignPaperDarkButton}"
+                        MinHeight="60" />
+
+                <Button x:Name="LogOutButton"
+                        Content="Выйти из профиля"
+                        Margin="0, 30, 0, 0"
+                        Background="Gray"
+                        Click="LogOutButton_Click"
+                        Style="{StaticResource MaterialDesignPaperDarkButton}" />
+            </StackPanel>
+
+            <Grid Grid.Column="1">
+                <DataGrid x:Name="MainDataGrid"
+                          FontSize="20"
+                          MouseDoubleClick="MainDataGrid_MouseDoubleClick"
+                          BorderThickness="1"
+                          BorderBrush="Black"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          CanUserReorderColumns="False"
+                          Margin="15"
+                          IsReadOnly="True"
+                          Style="{StaticResource MaterialDesignDataGrid}">
+                    <DataGridCell>
+                        <DataGridCell Focusable="False" />
+                    </DataGridCell>
+
+                </DataGrid>
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</Window>

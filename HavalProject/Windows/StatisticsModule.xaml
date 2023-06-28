@@ -1,0 +1,49 @@
+﻿<Window x:Class="HavalProject.Windows.StatisticsModule"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HavalProject.Windows"
+        xmlns:ScottPlot="clr-namespace:ScottPlot;assembly=ScottPlot.WPF"
+        mc:Ignorable="d"
+        Title="Модуль статистики"
+        Height="600"
+        Width="850"
+        Icon="/Images/Logo.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <TextBlock TextWrapping="Wrap"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center"
+                   FontWeight="DemiBold"
+                   FontSize="15">
+                        <Run Text="Представление информации о продажах и прочей информации в графическом виде" />
+        </TextBlock>
+
+        <Grid x:Name="ChartsHeightContainer"
+              Grid.Row="1" />
+
+        <Grid Grid.Row="1">
+            <ScrollViewer>
+                <StackPanel Margin="10 0 25 0">
+                    <ScottPlot:WpfPlot x:Name="plot1"
+                                       Height="{Binding ElementName=ChartsHeightContainer, Path=ActualHeight}"
+                                       IsEnabled="False" />
+                    <ScottPlot:WpfPlot x:Name="plot2"
+                                       Height="{Binding ElementName=ChartsHeightContainer, Path=ActualHeight}"
+                                       IsEnabled="False" />
+                    <ScottPlot:WpfPlot x:Name="plot3"
+                                       Height="{Binding ElementName=ChartsHeightContainer, Path=ActualHeight}"
+                                       IsEnabled="False" />
+                    <ScottPlot:WpfPlot x:Name="plot4"
+                                       Height="{Binding ElementName=ChartsHeightContainer, Path=ActualHeight}"
+                                       IsEnabled="False" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>

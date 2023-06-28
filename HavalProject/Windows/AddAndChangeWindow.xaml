@@ -1,0 +1,60 @@
+﻿<Window x:Class="HavalProject.AddAndChangeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HavalProject"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="False"
+        ui:ThemeManager.RequestedTheme="Light"
+        
+        mc:Ignorable="d"
+        Title="Изменение данных"
+        Height="450"
+        Width="300"
+        Icon="/Images/Logo.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Image Source="/Images/Logo.png" />
+
+        <StackPanel Grid.Row="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    x:Name="MainStackPanel">
+            <TextBlock x:Name="FirstBlock"
+                       FontSize="20"
+                       MaxWidth="200"/>
+            <TextBox x:Name="FirstBox"
+                     FontSize="20" 
+                     MaxWidth="200"
+                     Style="{StaticResource MaterialDesignTextBox}"/>
+            <TextBlock x:Name="SecondBlock"
+                       FontSize="20"
+                       MaxWidth="200" />
+            <TextBox x:Name="SecondBox"
+                     FontSize="20"
+                     MaxWidth="200"
+                     Style="{StaticResource MaterialDesignTextBox}"/>
+            <TextBlock x:Name="ThirdBlock"
+                       FontSize="20"
+                       MaxWidth="200"/>
+            <TextBox x:Name="ThirdBox"
+                     FontSize="20"
+                     MaxWidth="200"
+                     Style="{StaticResource MaterialDesignTextBox}"/>
+
+            <Button x:Name="SaveButton"
+                    Margin="0, 30, 0, 0"
+                    Background="Gray"
+                    Content="Сохранить"
+                    Click="SaveButton_Click"
+                    Width="200"
+                    Style="{StaticResource MaterialDesignPaperDarkButton}"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,350 @@
+﻿<Window x:Class="HavalProject.Windows.SuppliesAddAndChange"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="False"
+        ui:ThemeManager.RequestedTheme="Light"
+        Height="740"
+        MinHeight="740"
+        Width="1010"
+        MinWidth="1010"
+        Icon="/Images/Logo.png"
+        x:Name="SupplyChangeWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Image Source="/Images/Logo.png" />
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Margin="0 0 5 5">
+                    <Border BorderBrush="Black"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            Name="AddCarContainer"
+                            Padding="5 0 5 0">
+                        <StackPanel Orientation="Vertical"
+                                    HorizontalAlignment="Center">
+                            <TextBlock Text="Добавление авто в поставку"
+                                       FontSize="20"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center" />
+
+                            <Line Margin="0 5 0 0"
+                                  Stroke="Black"
+                                  StrokeThickness="5"
+                                  X1="0"
+                                  Y1="0"
+                                  X2="{Binding ElementName=AddCarContainer, Path=ActualWidth}"
+                                  Y2="0" />
+
+                            <TextBlock FontSize="20"
+                                       Text="Автомобиль" />
+
+                            <ComboBox Name="CarComboBox"
+                                      BorderThickness="1"
+                                      FontSize="20"
+                                      Style="{StaticResource MaterialDesignComboBox}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <Run Text="{Binding IdModelNavigation.ModelName}" />
+                                            <Run Text="{Binding IdConfigurationNavigation.ConfigurationName}" />
+                                            <Run Text="{Binding IdColorNavigation.ColorName}" />
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <TextBlock FontSize="20"
+                                       Text="Количество в поставке (шт.)" />
+
+                            <TextBox Name="QuantityAddCarTextBox"
+                                     FontSize="20"
+                                     Style="{StaticResource MaterialDesignTextBox}"/>
+
+                            <TextBlock FontSize="20"
+                                       Text="Цена за 1 штуку (руб.)" />
+
+                            <TextBox Name="PriceAddCarTextBox"
+                                     FontSize="20"
+                                     Margin="0 0 0 8"
+                                     Style="{StaticResource MaterialDesignTextBox}"/>
+
+                            <Button Content="Сохранить"
+                                    Margin="0 5 0 8"
+                                    Padding="0 0 0 2"
+                                    FontSize="20"
+                                    Background="Gray"
+                                    x:Name="AddGoodInSupplyButton"
+                                    Click="AddGoodInSupplyButton_Click"
+                                    Style="{StaticResource MaterialDesignPaperDarkButton}"/>
+
+
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Column="1"
+                      Margin="5 0 0 5">
+                    <Border>
+                        <DataGrid BorderThickness="1"
+                                  FontSize="20"
+                                  BorderBrush="Black"
+                                  CanUserAddRows="False"
+                                  CanUserDeleteRows="False"
+                                  CanUserReorderColumns="False"
+                                  IsReadOnly="True"
+                                  AutoGenerateColumns="False"
+                                  x:Name="GoodsDataGrid"
+                                  Style="{StaticResource MaterialDesignDataGrid}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Автомобиль"
+                                                    Binding="{Binding CarInfo}"
+                                                    Width="auto" />
+                                <DataGridTextColumn Header="Цена за 1 штуку (руб.)"
+                                                    Binding="{Binding Price}"
+                                                    Width="auto" />
+                                <DataGridTextColumn Header="Количество (шт.)"
+                                                    Binding="{Binding Quantity}"
+                                                    Width="auto" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Margin="0 5 5 0">
+                    <Border BorderBrush="Black"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="7*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid>
+                                <TextBlock Text="Замена существующей модели авто в поставке"
+                                           FontSize="20"
+                                           TextWrapping="Wrap"
+                                           TextAlignment="Center" />
+                            </Grid>
+
+                            <Grid Grid.Row="1"
+                                  x:Name="ReplaceCarLineContainer"
+                                  Margin="5 5 5 0">
+                                <Line Stroke="Black"
+                                      StrokeThickness="2"
+                                      X1="0"
+                                      Y1="0"
+                                      X2="{Binding ElementName=ReplaceCarLineContainer, Path=ActualWidth}"
+                                      Y2="0" />
+                            </Grid>
+
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.7*" />
+                                    <ColumnDefinition Width="0.5*" />
+                                    <ColumnDefinition Width="0.9*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid>
+                                    <StackPanel Orientation="Vertical"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center">
+                                        <TextBlock Text="Существующая модель"
+                                                   FontSize="20"
+                                                   TextWrapping="Wrap"
+                                                   TextAlignment="Center" />
+                                        <ComboBox Name="ExistingCarComboBoxReplace"
+                                                  BorderThickness="1"
+                                                  FontSize="20"
+                                                  Margin="0 5 0 0"
+                                                  Style="{StaticResource MaterialDesignComboBox}">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+                                                        <Run Text="{Binding IdCarNavigation.IdModelNavigation.ModelName}" />
+                                                        <Run Text="{Binding IdCarNavigation.IdConfigurationNavigation.ConfigurationName}" />
+                                                        <Run Text="{Binding IdCarNavigation.IdColorNavigation.ColorName}" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Grid.Column="1">
+                                    <Image Source="/Images/RightArrow.png"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Margin="20"/>
+                                    <Button Content="Применить"
+                                            x:Name="ReplaceCarInSupplyButton"
+                                            Click="ReplaceCarInSupplyButton_Click"
+                                            Background="Gray"
+                                            VerticalAlignment="Bottom"
+                                            Margin="5 0 5 10"
+                                            Padding="0 0 0 2"
+                                            FontSize="20"
+                                            Style="{StaticResource MaterialDesignPaperDarkButton}"/>
+                                </Grid>
+                                
+                                <Grid Grid.Column="2">
+                                    <StackPanel Orientation="Vertical"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+                                        <TextBlock FontSize="20"
+                                                   Text="Автомобиль" />
+
+                                        <ComboBox Name="CarComboBoxReplace"
+                                                  BorderThickness="1"
+                                                  FontSize="20"
+                                                  Style="{StaticResource MaterialDesignComboBox}">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+                                            <Run Text="{Binding IdModelNavigation.ModelName}" />
+                                            <Run Text="{Binding IdConfigurationNavigation.ConfigurationName}" />
+                                            <Run Text="{Binding IdColorNavigation.ColorName}" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+
+                                        <TextBlock FontSize="20"
+                                                   Text="Количество в поставке (шт.)" />
+
+                                        <TextBox Name="QuantityAddCarTextBoxReplace"
+                                                 FontSize="20"
+                                                 Style="{StaticResource MaterialDesignTextBox}" />
+
+                                        <TextBlock FontSize="20"
+                                                   Text="Цена за 1 штуку (руб.)" />
+
+                                        <TextBox Name="PriceAddCarTextBoxReplace"
+                                                 FontSize="20"
+                                                 Style="{StaticResource MaterialDesignTextBox}"/>
+                                    </StackPanel>
+                                </Grid>
+                                
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Column="1"
+                      Margin="5 5 0 0">
+                    <Border BorderBrush="Black"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            Name="SupplyFieldsContainer"
+                            Padding="5 0 5 0">
+                        <StackPanel Orientation="Vertical"
+                                    HorizontalAlignment="Center">
+                            <TextBlock Text="Изменение данных поставки"
+                                       FontSize="20"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center" />
+
+                            <Line Margin="0 5 0 0"
+                                  Stroke="Black"
+                                  StrokeThickness="5"
+                                  X1="0"
+                                  Y1="0"
+                                  X2="{Binding ElementName=SupplyFieldsContainer, Path=ActualWidth}"
+                                  Y2="0" />
+
+                            <TextBlock FontSize="20"
+                                       Text="Поставщик" />
+
+                            <ComboBox Name="SuppliersComboBox"
+                                      BorderThickness="1"
+                                      FontSize="20"
+                                      Style="{StaticResource MaterialDesignComboBox}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <Run Text="{Binding Address}" />
+                                            <Run Text="{Binding PhoneNumber}" />
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <TextBlock FontSize="20"
+                                       Text="Дата поставки" />
+
+                            <DatePicker Name="DatePickerOfSupply"
+                                     FontSize="20"
+                                        Style="{StaticResource MaterialDesignDatePicker}"/>
+
+                            <TextBlock FontSize="20"
+                                       Text="Время поставки" />
+
+                            <materialDesign:TimePicker Name="TimePickerOfSupply"
+                                        FontSize="20"
+                                                       Is24Hours="True"
+                                        Style="{StaticResource MaterialDesignTimePicker}" />
+
+                            <TextBlock FontSize="20"
+                                       Text="Статус поставки" />
+
+                            <ComboBox Name="SupplyStatusesComboBox"
+                                      BorderThickness="1"
+                                      FontSize="20"
+                                      Style="{StaticResource MaterialDesignComboBox}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <Run Text="{Binding StatusName}" />
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <Button Content="Сохранить"
+                                    Margin="0 8 0 8"
+                                    Padding="0 0 0 2"
+                                    FontSize="20"
+                                    x:Name="SaveButton"
+                                    Background="Gray"
+                                    Click="SaveButton_Click"
+                                    Style="{StaticResource MaterialDesignPaperDarkButton}"/>
+
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Window>
